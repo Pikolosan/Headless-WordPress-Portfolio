@@ -28,3 +28,17 @@ query PostBySlug($id: ID!, $idType: PostIdType!) {
     date
   }
 }
+```
+### 2. Dynamic Routing & Security
+- Utilized Next.js Dynamic Routes ([slug]) to programmatically generate pages.
+
+- Security: The WordPress backend is completely decoupled from the frontend, meaning the admin dashboard is not exposed to the public web.
+
+## 🛠 Tech Stack
+- Framework: Next.js 15
+
+- CMS: WordPress + WPGraphQL Plugin
+
+- Language: JavaScript (ES6+)
+
+- Styling: Tailwind CSS

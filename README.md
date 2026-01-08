@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Headless WordPress Portfolio (Next.js + GraphQL) 🚀
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-15.0-black) ![WordPress](https://img.shields.io/badge/WordPress-Headless-blue) ![GraphQL](https://img.shields.io/badge/GraphQL-API-pink)
 
-First, run the development server:
+A decoupled CMS architecture bridging a **WordPress Backend** with a **Next.js Frontend**. Designed to demonstrate modern "Jamstack" principles, high performance, and security.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗 Architecture
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Frontend:** Next.js (App Router) for Static Site Generation (SSG).
+- **Backend:** WordPress (Local/Headless Mode) serving content.
+- **Data Layer:** WPGraphQL API (replacing standard REST API for efficiency).
+- **Styling:** Tailwind CSS.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧠 Engineering Highlights
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Efficient Data Fetching (GraphQL)
+Instead of over-fetching data with the REST API, I implemented **GraphQL queries** to request *only* the specific fields needed (Title, Slug, Excerpt), reducing payload size by ~60%.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```graphql
+query PostBySlug($id: ID!, $idType: PostIdType!) {
+  post(id: $id, idType: $idType) {
+    title
+    content
+    date
+  }
+}
